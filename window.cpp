@@ -13,7 +13,11 @@ TCHAR class_settings[] = TEXT("SettingsWindow");
 HWND hwnd_main;
 HWND hwnd_settings;
 
-#define ID_BTN_SETTINGS 1
+#define ID_BTN_SETTINGS 01
+#define ID_TB_PATH 11
+#define ID_CBS_RESOLUTION 12
+#define ID_CBS_FPS 13
+#define ID_CBS_SOUND 14
 
 /* WinMain(WINAPIのmainみたいなもの)の宣言 */
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow) {
@@ -36,7 +40,7 @@ void CreateMainWindow() {
     WNDCLASS wc_main;
     HWND hwnd_btn_settings;
 
-    /* wc_main(ウィンドウクラス)の属性を設定*/
+    /* wc_main(ウィンドウクラス)の属性を設定 */
     wc_main.style = CS_HREDRAW | CS_VREDRAW;
     wc_main.lpfnWndProc = MainWndProc;
     wc_main.cbClsExtra = 0;
@@ -86,8 +90,12 @@ void CreateMainWindow() {
 /* 設定用ウィンドウ系 */
 void CreateSettingsWindow() {
     WNDCLASS wc_settings;
+    HWND hwnd_tb_path;
+    HWND hwnd_cbs_resolution;
+    HWND hwnd_cbs_fps;
+    HWND hwnd_cbs_sound;
 
-    /* wc_settings(ウィンドウクラス)の属性を設定*/
+    /* wc_settings(ウィンドウクラス)の属性を設定 */
     wc_settings.style = CS_HREDRAW | CS_VREDRAW;
     wc_settings.lpfnWndProc = SettingsWndProc;
     wc_settings.cbClsExtra = 0;
@@ -107,20 +115,91 @@ void CreateSettingsWindow() {
         class_settings,
         TEXT("設定"),
         WS_POPUPWINDOW | WS_CAPTION,
-        200,
-        200,
-        200,
-        200,
+        CW_USEDEFAULT,
+        CW_USEDEFAULT,
+        1080,
+        720,
         hwnd_main,
         NULL,
         hInstance,
         NULL);
 
+    /* 保存先pathのテキストボックスの作成 */
+    hwnd_tb_path = CreateWindow(
+        TEXT("EDIT"),
+        TEXT(""),
+        WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
+        100,
+        100,
+        200,
+        25,
+        hwnd_settings,
+        (HMENU)ID_TB_PATH,
+        hInstance,
+        NULL);
+
+    /* 解像度のコンボボックスの作成 */
+    hwnd_cbs_resolution = CreateWindow(
+        TEXT("COMBOBOX"),
+        TEXT(""),
+        WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
+        100,
+        150,
+        200,
+        200,
+        hwnd_settings,
+        (HMENU)ID_CBS_RESOLUTION,
+        hInstance,
+        NULL);
+
+    /* 解像度のコンボボックスの択を入れる */
+    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("Full HD"));
+    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("HD"));
+    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("640x360"));
+    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("256x144"));
+
+    /* フレームレートのコンボボックスの作成 */
+    hwnd_cbs_fps = CreateWindow(
+        TEXT("COMBOBOX"),
+        TEXT(""),
+        WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
+        100,
+        200,
+        200,
+        200,
+        hwnd_settings,
+        (HMENU)ID_CBS_FPS,
+        hInstance,
+        NULL);
+
+    /* フレームレートのコンボボックスの択を入れる */
+    SendMessage(hwnd_cbs_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("60fps"));
+    SendMessage(hwnd_cbs_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("30fps"));
+    SendMessage(hwnd_cbs_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("15fps"));
+
+    /* 音質のコンボボックスの作成 */
+    hwnd_cbs_sound = CreateWindow(
+        TEXT("COMBOBOX"),
+        TEXT(""),
+        WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
+        100,
+        250,
+        200,
+        200,
+        hwnd_settings,
+        (HMENU)ID_CBS_SOUND,
+        hInstance,
+        NULL);
+
+    /* 音質のコンボボックスの択を入れる */
+    SendMessage(hwnd_cbs_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("48000Hz"));
+    SendMessage(hwnd_cbs_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("32000Hz"));
+    SendMessage(hwnd_cbs_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("16000Hz"));
+
     ShowWindow(hwnd_settings, SW_SHOW);
     UpdateWindow(hwnd_settings);
 
-    EnableWindow(hwnd_main, FALSE);     // メインウィンドウを使用不可に
-
+    EnableWindow(hwnd_main, FALSE); // メインウィンドウを使用不可に
 }
 
 /* MainWndProc(ウィンドウプロシージャ(受け取ったメッセージによって処理をする))の定義 */
@@ -130,7 +209,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         PostQuitMessage(0); // 終了コードを0にする
         return 0;
     case WM_COMMAND: // WM_COMMAND(何らかのボタンが押されたときに発生するメッセージ)なら
-        switch LOWORD(wParam) {
+        switch (LOWORD(wParam)) {
         case ID_BTN_SETTINGS:
             CreateSettingsWindow();
             break;
