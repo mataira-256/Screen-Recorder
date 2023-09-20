@@ -1,4 +1,6 @@
 #include <windows.h>
+#include <iostream>
+#include "json.hpp"
 
 /* プロトタイプ宣言 */
 LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -18,6 +20,8 @@ HWND hwnd_settings;
 #define ID_CB_RESOLUTION 12
 #define ID_CB_FPS 13
 #define ID_CB_SOUND 14
+#define ID_BTN_SAVE_SETTINGS 15
+#define ID_BTN_CANCEL_SETTINGS 16
 
 /* WinMain(WINAPIのmainみたいなもの)の宣言 */
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow) {
@@ -94,6 +98,8 @@ void CreateSettingsWindow() {
     HWND hwnd_cb_resolution;
     HWND hwnd_cb_fps;
     HWND hwnd_cb_sound;
+    HWND hwnd_btn_save_settings;
+    HWND hwnd_btn_cancel_settings;
 
     /* wc_settings(ウィンドウクラス)の属性を設定 */
     wc_settings.style = CS_HREDRAW | CS_VREDRAW;
@@ -196,6 +202,32 @@ void CreateSettingsWindow() {
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("32000Hz"));
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("16000Hz"));
 
+    hwnd_btn_save_settings = CreateWindow(
+        TEXT("button"),
+        TEXT("保存"),
+        WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+        400,
+        400,
+        50,
+        25,
+        hwnd_settings,
+        (HMENU)ID_BTN_SAVE_SETTINGS,
+        hInstance,
+        NULL);
+
+    hwnd_btn_cancel_settings = CreateWindow(
+        TEXT("button"),
+        TEXT("キャンセル"),
+        WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+        450,
+        400,
+        100,
+        25,
+        hwnd_settings,
+        (HMENU)ID_BTN_CANCEL_SETTINGS,
+        hInstance,
+        NULL);
+
     ShowWindow(hwnd_settings, SW_SHOW);
     UpdateWindow(hwnd_settings);
 
@@ -227,6 +259,15 @@ LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     case WM_CLOSE:
         EnableWindow(hwnd_main, TRUE);
         DestroyWindow(hwnd);
+    case WM_COMMAND:
+        switch (LOWORD(wParam)) {
+        case ID_BTN_SAVE_SETTINGS:
+            EnableWindow(hwnd_main, TRUE);
+            DestroyWindow(hwnd);
+        case ID_BTN_CANCEL_SETTINGS:
+            EnableWindow(hwnd_main, TRUE);
+            DestroyWindow(hwnd);
+        }
     }
 
     return DefWindowProc(hwnd, uMsg, wParam, lParam); // 特別指定したやつ以外は既定のプロシージャにぶん投げる
