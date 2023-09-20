@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <iostream>
+#include <fstream>
 #include "json.hpp"
 
 /* プロトタイプ宣言 */
@@ -255,10 +256,10 @@ void SaveSettings() {
     HWND hwnd_cb_sound      = GetDlgItem(hwnd_settings, ID_CB_SOUND);
 
     /* 文字の長さだけメモリ確保 */
-    LPTSTR str_path       = (LPTSTR)calloc((GetWindowTextLength(hwnd_tb_path) + 1), sizeof(TCHAR));
-    LPTSTR str_resolution = (LPTSTR)calloc((GetWindowTextLength(hwnd_cb_resolution) + 1), sizeof(TCHAR));
-    LPTSTR str_fps        = (LPTSTR)calloc((GetWindowTextLength(hwnd_cb_fps) + 1), sizeof(TCHAR));
-    LPTSTR str_sound      = (LPTSTR)calloc((GetWindowTextLength(hwnd_cb_sound) + 1), sizeof(TCHAR));
+    wchar_t str_path[256];
+    wchar_t str_resolution[16];
+    wchar_t str_fps[16];
+    wchar_t str_sound[16];
 
     /* 入れてく */
     GetWindowText(hwnd_tb_path, str_path, sizeof(str_path));
@@ -266,7 +267,19 @@ void SaveSettings() {
     GetWindowText(hwnd_cb_fps, str_fps, sizeof(str_fps));
     GetWindowText(hwnd_cb_sound, str_sound, sizeof(str_sound));
 
+    
 
+    /* jsonに入れてく */
+    nlohmann::json json;
+    std::ofstream file("settings.json");
+
+    json["path"] = ;
+    json["resolution"] = std::wstring(str_resolution);
+    json["fps"] = std::wstring(str_fps);
+    json["sound"] = std::wstring(str_sound);
+
+    file << json.dump(4);
+    file.close();
 }
 
 
