@@ -15,9 +15,9 @@ HWND hwnd_settings;
 
 #define ID_BTN_SETTINGS 01
 #define ID_TB_PATH 11
-#define ID_CBS_RESOLUTION 12
-#define ID_CBS_FPS 13
-#define ID_CBS_SOUND 14
+#define ID_CB_RESOLUTION 12
+#define ID_CB_FPS 13
+#define ID_CB_SOUND 14
 
 /* WinMain(WINAPIのmainみたいなもの)の宣言 */
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow) {
@@ -91,9 +91,9 @@ void CreateMainWindow() {
 void CreateSettingsWindow() {
     WNDCLASS wc_settings;
     HWND hwnd_tb_path;
-    HWND hwnd_cbs_resolution;
-    HWND hwnd_cbs_fps;
-    HWND hwnd_cbs_sound;
+    HWND hwnd_cb_resolution;
+    HWND hwnd_cb_fps;
+    HWND hwnd_cb_sound;
 
     /* wc_settings(ウィンドウクラス)の属性を設定 */
     wc_settings.style = CS_HREDRAW | CS_VREDRAW;
@@ -139,7 +139,7 @@ void CreateSettingsWindow() {
         NULL);
 
     /* 解像度のコンボボックスの作成 */
-    hwnd_cbs_resolution = CreateWindow(
+    hwnd_cb_resolution = CreateWindow(
         TEXT("COMBOBOX"),
         TEXT(""),
         WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
@@ -148,18 +148,18 @@ void CreateSettingsWindow() {
         200,
         200,
         hwnd_settings,
-        (HMENU)ID_CBS_RESOLUTION,
+        (HMENU)ID_CB_RESOLUTION,
         hInstance,
         NULL);
 
     /* 解像度のコンボボックスの択を入れる */
-    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1920x1080"));
-    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1280x720"));
-    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("640x360"));
-    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("256x144"));
+    SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1920x1080"));
+    SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1280x720"));
+    SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("640x360"));
+    SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("256x144"));
 
     /* フレームレートのコンボボックスの作成 */
-    hwnd_cbs_fps = CreateWindow(
+    hwnd_cb_fps = CreateWindow(
         TEXT("COMBOBOX"),
         TEXT(""),
         WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
@@ -168,17 +168,17 @@ void CreateSettingsWindow() {
         200,
         200,
         hwnd_settings,
-        (HMENU)ID_CBS_FPS,
+        (HMENU)ID_CB_FPS,
         hInstance,
         NULL);
 
     /* フレームレートのコンボボックスの択を入れる */
-    SendMessage(hwnd_cbs_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("60fps"));
-    SendMessage(hwnd_cbs_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("30fps"));
-    SendMessage(hwnd_cbs_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("15fps"));
+    SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("60fps"));
+    SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("30fps"));
+    SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("15fps"));
 
     /* 音質のコンボボックスの作成 */
-    hwnd_cbs_sound = CreateWindow(
+    hwnd_cb_sound = CreateWindow(
         TEXT("COMBOBOX"),
         TEXT(""),
         WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
@@ -187,14 +187,14 @@ void CreateSettingsWindow() {
         200,
         200,
         hwnd_settings,
-        (HMENU)ID_CBS_SOUND,
+        (HMENU)ID_CB_SOUND,
         hInstance,
         NULL);
 
     /* 音質のコンボボックスの択を入れる */
-    SendMessage(hwnd_cbs_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("48000Hz"));
-    SendMessage(hwnd_cbs_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("32000Hz"));
-    SendMessage(hwnd_cbs_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("16000Hz"));
+    SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("48000Hz"));
+    SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("32000Hz"));
+    SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("16000Hz"));
 
     ShowWindow(hwnd_settings, SW_SHOW);
     UpdateWindow(hwnd_settings);
