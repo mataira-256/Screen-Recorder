@@ -153,8 +153,8 @@ void CreateSettingsWindow() {
         NULL);
 
     /* 解像度のコンボボックスの択を入れる */
-    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("Full HD"));
-    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("HD"));
+    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1920x1080"));
+    SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1280x720"));
     SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("640x360"));
     SendMessage(hwnd_cbs_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("256x144"));
 
