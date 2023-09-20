@@ -7,6 +7,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void CreateMainWindow();
 void CreateSettingsWindow();
+void SaveSettings();
 
 /* グローバル変数等々 */
 HINSTANCE hInstance;
@@ -23,6 +24,8 @@ HWND hwnd_settings;
 #define ID_BTN_SAVE_SETTINGS 15
 #define ID_BTN_CANCEL_SETTINGS 16
 
+
+
 /* WinMain(WINAPIのmainみたいなもの)の宣言 */
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow) {
     hInstance = hInst;
@@ -38,6 +41,8 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, 
 
     return msg.wParam;
 }
+
+
 
 /* メインウィンドウ系 */
 void CreateMainWindow() {
@@ -91,6 +96,8 @@ void CreateMainWindow() {
     UpdateWindow(hwnd_main);
 }
 
+
+
 /* 設定用ウィンドウ系 */
 void CreateSettingsWindow() {
     WNDCLASS wc_settings;
@@ -130,6 +137,7 @@ void CreateSettingsWindow() {
         hInstance,
         NULL);
 
+
     /* 保存先pathのテキストボックスの作成 */
     hwnd_tb_path = CreateWindow(
         TEXT("EDIT"),
@@ -143,6 +151,7 @@ void CreateSettingsWindow() {
         (HMENU)ID_TB_PATH,
         hInstance,
         NULL);
+
 
     /* 解像度のコンボボックスの作成 */
     hwnd_cb_resolution = CreateWindow(
@@ -163,6 +172,7 @@ void CreateSettingsWindow() {
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1280x720"));
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("640x360"));
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("256x144"));
+
 
     /* フレームレートのコンボボックスの作成 */
     hwnd_cb_fps = CreateWindow(
@@ -234,6 +244,33 @@ void CreateSettingsWindow() {
     EnableWindow(hwnd_main, FALSE); // メインウィンドウを使用不可に
 }
 
+
+
+/* 設定をjsonに保存する */
+void SaveSettings() {
+    /* ウィンドウハンドルを取得 */
+    HWND hwnd_tb_path       = GetDlgItem(hwnd_settings, ID_TB_PATH);
+    HWND hwnd_cb_resolution = GetDlgItem(hwnd_settings, ID_CB_RESOLUTION);
+    HWND hwnd_cb_fps        = GetDlgItem(hwnd_settings, ID_CB_FPS);
+    HWND hwnd_cb_sound      = GetDlgItem(hwnd_settings, ID_CB_SOUND);
+
+    /* 文字の長さだけメモリ確保 */
+    LPTSTR str_path       = (LPTSTR)calloc((GetWindowTextLength(hwnd_tb_path) + 1), sizeof(TCHAR));
+    LPTSTR str_resolution = (LPTSTR)calloc((GetWindowTextLength(hwnd_cb_resolution) + 1), sizeof(TCHAR));
+    LPTSTR str_fps        = (LPTSTR)calloc((GetWindowTextLength(hwnd_cb_fps) + 1), sizeof(TCHAR));
+    LPTSTR str_sound      = (LPTSTR)calloc((GetWindowTextLength(hwnd_cb_sound) + 1), sizeof(TCHAR));
+
+    /* 入れてく */
+    GetWindowText(hwnd_tb_path, str_path, sizeof(str_path));
+    GetWindowText(hwnd_cb_resolution, str_resolution, sizeof(str_resolution));
+    GetWindowText(hwnd_cb_fps, str_fps, sizeof(str_fps));
+    GetWindowText(hwnd_cb_sound, str_sound, sizeof(str_sound));
+
+
+}
+
+
+
 /* MainWndProc(ウィンドウプロシージャ(受け取ったメッセージによって処理をする))の定義 */
 LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg) { // uMsg(受け取ったメッセージが入ってる)が
@@ -251,6 +288,8 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hwnd, uMsg, wParam, lParam); // 特別指定したやつ以外は既定のプロシージャにぶん投げる
 }
 
+
+
 /* SettingsWndProc(ウィンドウプロシージャ(受け取ったメッセージによって処理をする))の定義 */
 LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg) { // uMsg(受け取ったメッセージが入ってる)が
@@ -262,6 +301,7 @@ LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     case WM_COMMAND:
         switch (LOWORD(wParam)) {
         case ID_BTN_SAVE_SETTINGS:
+            SaveSettings();
             EnableWindow(hwnd_main, TRUE);
             DestroyWindow(hwnd);
         case ID_BTN_CANCEL_SETTINGS:
