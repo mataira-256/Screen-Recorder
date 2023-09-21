@@ -110,6 +110,16 @@ void CreateSettingsWindow() {
     HWND hwnd_btn_save_settings;
     HWND hwnd_btn_cancel_settings;
 
+    /* jsonから読み取る */
+    std::ifstream file("settings.json");
+    nlohmann::json j;
+    file >> j;
+
+    std::string str_path = j["path"];
+    std::string str_resolution = j["resolution"];
+    std::string str_fps = j["fps"];
+    std::string str_sound = j["sound"];
+
     /* wc_settings(ウィンドウクラス)の属性を設定 */
     wc_settings.style = CS_HREDRAW | CS_VREDRAW;
     wc_settings.lpfnWndProc = SettingsWndProc;
@@ -176,7 +186,6 @@ void CreateSettingsWindow() {
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("256x144"));
 
 
-
     /* フレームレートのコンボボックスの作成 */
     hwnd_cb_fps = CreateWindow(
         TEXT("COMBOBOX"),
@@ -196,6 +205,7 @@ void CreateSettingsWindow() {
     SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("30fps"));
     SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("15fps"));
 
+
     /* 音質のコンボボックスの作成 */
     hwnd_cb_sound = CreateWindow(
         TEXT("COMBOBOX"),
@@ -214,6 +224,13 @@ void CreateSettingsWindow() {
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("48000Hz"));
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("32000Hz"));
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("16000Hz"));
+
+
+    /* テキストボックスとコンボボックスに 初期値を与える */
+
+
+
+
 
     hwnd_btn_save_settings = CreateWindow(
         TEXT("button"),
