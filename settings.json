@@ -1,6 +1,6 @@
 {
-    "fps": [],
-    "path": "aa",
-    "resolution": [],
-    "sound": []
+    "fps": "60fps",
+    "path": "c\\",
+    "resolution": "1920x1080",
+    "sound": "48000Hz"
 }

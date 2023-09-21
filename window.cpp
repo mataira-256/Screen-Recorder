@@ -9,6 +9,7 @@ LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 void CreateMainWindow();
 void CreateSettingsWindow();
 void SaveSettings();
+std::string GetTextFromEdit(HWND editBox);
 
 /* グローバル変数等々 */
 HINSTANCE hInstance;
@@ -175,6 +176,7 @@ void CreateSettingsWindow() {
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("256x144"));
 
 
+
     /* フレームレートのコンボボックスの作成 */
     hwnd_cb_fps = CreateWindow(
         TEXT("COMBOBOX"),
@@ -255,31 +257,50 @@ void SaveSettings() {
     HWND hwnd_cb_fps        = GetDlgItem(hwnd_settings, ID_CB_FPS);
     HWND hwnd_cb_sound      = GetDlgItem(hwnd_settings, ID_CB_SOUND);
 
-    /* 文字の長さだけメモリ確保 */
-    wchar_t str_path[256];
-    wchar_t str_resolution[16];
-    wchar_t str_fps[16];
-    wchar_t str_sound[16];
-
-    /* 入れてく */
-    GetWindowText(hwnd_tb_path, str_path, sizeof(str_path));
-    GetWindowText(hwnd_cb_resolution, str_resolution, sizeof(str_resolution));
-    GetWindowText(hwnd_cb_fps, str_fps, sizeof(str_fps));
-    GetWindowText(hwnd_cb_sound, str_sound, sizeof(str_sound));
-
-    
+    /* 文字を変数に入れていく*/
+    std::string str_path = GetTextFromEdit(hwnd_tb_path);
+    std::string str_resolution = GetTextFromEdit(hwnd_cb_resolution);
+    std::string str_fps = GetTextFromEdit(hwnd_cb_fps);
+    std::string str_sound = GetTextFromEdit(hwnd_cb_sound);
 
     /* jsonに入れてく */
     nlohmann::json json;
     std::ofstream file("settings.json");
 
-    json["path"] = ;
-    json["resolution"] = std::wstring(str_resolution);
-    json["fps"] = std::wstring(str_fps);
-    json["sound"] = std::wstring(str_sound);
+    json["path"]       = str_path;
+    json["resolution"] = str_resolution;
+    json["fps"]        = str_fps;
+    json["sound"]      = str_sound;
 
     file << json.dump(4);
     file.close();
+}
+
+
+
+// エディットボックスからテキストを取得してstd::stringに変換する関数
+std::string GetTextFromEdit(HWND editBox) {
+    int textLength = GetWindowTextLength(editBox);
+    if (textLength == 0) {
+        return ""; // エディットボックスが空の場合、空の文字列を返す
+    }
+
+    // テキストを格納するためのバッファを割り当てる
+    wchar_t* buffer = new wchar_t[textLength + 1];
+
+    // エディットボックスからテキストを取得
+    GetWindowText(editBox, buffer, textLength + 1);
+
+    // wchar_tをstd::wstringに変換
+    std::wstring wstr(buffer);
+
+    // std::wstringをstd::stringに変換
+    std::string str(wstr.begin(), wstr.end());
+
+    // メモリリークを防ぐためにバッファを解放
+    delete[] buffer;
+
+    return str;
 }
 
 
