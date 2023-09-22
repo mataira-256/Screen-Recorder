@@ -110,15 +110,6 @@ void CreateSettingsWindow() {
     HWND hwnd_btn_save_settings;
     HWND hwnd_btn_cancel_settings;
 
-    /* jsonから読み取る */
-    std::ifstream file("settings.json");
-    nlohmann::json j;
-    file >> j;
-
-    std::string str_path = j["path"];
-    std::string str_resolution = j["resolution"];
-    std::string str_fps = j["fps"];
-    std::string str_sound = j["sound"];
 
     /* wc_settings(ウィンドウクラス)の属性を設定 */
     wc_settings.style = CS_HREDRAW | CS_VREDRAW;
@@ -227,7 +218,14 @@ void CreateSettingsWindow() {
 
 
     /* テキストボックスとコンボボックスに 初期値を与える */
+    nlohmann::json json;
+    std::ifstream file("settings.json");
+    file >> json;
 
+    std::string str_path = json["path"];
+    std::string str_resolution = json["resolution"];
+    std::string str_fps = json["fps"];
+    std::string str_sound = json["sound"];
 
 
 
