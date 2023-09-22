@@ -274,16 +274,17 @@ void SaveSettings() {
     HWND hwnd_cb_fps        = GetDlgItem(hwnd_settings, ID_CB_FPS);
     HWND hwnd_cb_sound      = GetDlgItem(hwnd_settings, ID_CB_SOUND);
 
+    /* json‚ğŠJ‚­ */
+    nlohmann::json json;
+    std::ofstream file("settings.json");
+
     /* •¶š‚ğ•Ï”‚É“ü‚ê‚Ä‚¢‚­*/
     std::string str_path = GetTextFromEdit(hwnd_tb_path);
     std::string str_resolution = GetTextFromEdit(hwnd_cb_resolution);
     std::string str_fps = GetTextFromEdit(hwnd_cb_fps);
     std::string str_sound = GetTextFromEdit(hwnd_cb_sound);
 
-    /* json‚É“ü‚ê‚Ä‚­ */
-    nlohmann::json json;
-    std::ofstream file("settings.json");
-
+    /* json‚É‹L“ü‚µ‚Ä‚¢‚­ */
     json["path"]       = str_path;
     json["resolution"] = str_resolution;
     json["fps"]        = str_fps;
