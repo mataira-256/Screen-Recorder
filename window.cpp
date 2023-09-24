@@ -1,15 +1,10 @@
 #include <windows.h>
 #include <iostream>
 #include <fstream>
-#include "json.hpp"
 
-/* プロトタイプ宣言 */
-LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-void CreateMainWindow();
-void CreateSettingsWindow();
-void SaveSettings();
-std::string GetTextFromEdit(HWND editBox);
+#include "json.hpp"
+#include "window_inc.hpp"
+#include "window_id.hpp"
 
 /* グローバル変数等々 */
 HINSTANCE hInstance;
@@ -17,15 +12,6 @@ TCHAR class_main[] = TEXT("MainWindow");
 TCHAR class_settings[] = TEXT("SettingsWindow");
 HWND hwnd_main;
 HWND hwnd_settings;
-
-#define ID_BTN_SETTINGS 01
-#define ID_TB_PATH 11
-#define ID_CB_RESOLUTION 12
-#define ID_CB_FPS 13
-#define ID_CB_SOUND 14
-#define ID_BTN_SAVE_SETTINGS 15
-#define ID_BTN_CANCEL_SETTINGS 16
-
 
 
 /* WinMain(WINAPIのmainみたいなもの)の宣言 */
@@ -229,7 +215,7 @@ void CreateSettingsWindow() {
 
 
 
-
+    /* 保存ボタンとキャンセルボタン */
     hwnd_btn_save_settings = CreateWindow(
         TEXT("button"),
         TEXT("保存"),
@@ -317,48 +303,4 @@ std::string GetTextFromEdit(HWND editBox) {
     delete[] buffer;
 
     return str;
-}
-
-
-
-/* MainWndProc(ウィンドウプロシージャ(受け取ったメッセージによって処理をする))の定義 */
-LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    switch (uMsg) { // uMsg(受け取ったメッセージが入ってる)が
-    case WM_DESTROY: // WM_DESTROY(ウィンドウが破棄されたときに発生するメッセージ)なら
-        PostQuitMessage(0); // 終了コードを0にする
-        return 0;
-    case WM_COMMAND: // WM_COMMAND(何らかのボタンが押されたときに発生するメッセージ)なら
-        switch (LOWORD(wParam)) {
-        case ID_BTN_SETTINGS:
-            CreateSettingsWindow();
-            break;
-        }
-    }
-
-    return DefWindowProc(hwnd, uMsg, wParam, lParam); // 特別指定したやつ以外は既定のプロシージャにぶん投げる
-}
-
-
-
-/* SettingsWndProc(ウィンドウプロシージャ(受け取ったメッセージによって処理をする))の定義 */
-LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    switch (uMsg) { // uMsg(受け取ったメッセージが入ってる)が
-    case WM_DESTROY: // WM_DESTROY(ウィンドウが破棄されたときに発生するメッセージ)なら
-        return 0;
-    case WM_CLOSE:
-        EnableWindow(hwnd_main, TRUE);
-        DestroyWindow(hwnd);
-    case WM_COMMAND:
-        switch (LOWORD(wParam)) {
-        case ID_BTN_SAVE_SETTINGS:
-            SaveSettings();
-            EnableWindow(hwnd_main, TRUE);
-            DestroyWindow(hwnd);
-        case ID_BTN_CANCEL_SETTINGS:
-            EnableWindow(hwnd_main, TRUE);
-            DestroyWindow(hwnd);
-        }
-    }
-
-    return DefWindowProc(hwnd, uMsg, wParam, lParam); // 特別指定したやつ以外は既定のプロシージャにぶん投げる
 }

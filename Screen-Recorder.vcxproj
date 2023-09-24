@@ -19,10 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="procedure.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="window_inc.hpp" />
+    <ClInclude Include="window_id.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="settings.json" />
