@@ -156,7 +156,7 @@ void CreateSettingsWindow() {
         hInstance,
         NULL);
 
-    /* 解像度のコンボボックスの択を入れる */
+    /* 解像度のコンボボックスのリストを追加 */
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1920x1080"));
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1280x720"));
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("640x360"));
@@ -177,7 +177,7 @@ void CreateSettingsWindow() {
         hInstance,
         NULL);
 
-    /* フレームレートのコンボボックスの択を入れる */
+    /* フレームレートのコンボボックスのリストを追加 */
     SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("60fps"));
     SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("30fps"));
     SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("15fps"));
@@ -197,7 +197,7 @@ void CreateSettingsWindow() {
         hInstance,
         NULL);
 
-    /* 音質のコンボボックスの択を入れる */
+    /* 音質のコンボボックスのリストを追加 */
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("48000Hz"));
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("32000Hz"));
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("16000Hz"));
@@ -213,6 +213,10 @@ void CreateSettingsWindow() {
     std::string str_fps = json["fps"];
     std::string str_sound = json["sound"];
 
+    SendMessage(hwnd_tb_path, WM_SETTEXT, 0, (LPARAM)str_path);
+    SendMessage(hwnd_cb_resolution, CB_SELECTSTRING, -1, (LPARAM)str_resolution);
+    SendMessage(hwnd_cb_fps, CB_SELECTSTRING, -1, (LPARAM)str_fps);
+    SendMessage(hwnd_cb_sound, CB_SELECTSTRING, -1, (LPARAM)str_sound);
 
 
     /* 保存ボタンとキャンセルボタン */
