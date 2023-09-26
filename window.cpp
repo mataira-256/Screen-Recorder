@@ -208,15 +208,17 @@ void CreateSettingsWindow() {
     std::ifstream file("settings.json");
     file >> json;
 
-    std::string str_path = json["path"];
-    std::string str_resolution = json["resolution"];
-    std::string str_fps = json["fps"];
-    std::string str_sound = json["sound"];
+    std::string get_path = json["path"];
+    int get_resolution = json["resolution"];
+    int get_fps = json["fps"];
+    int get_sound = json["sound"];
 
-    SendMessage(hwnd_tb_path, WM_SETTEXT, 0, (LPARAM)str_path);
-    SendMessage(hwnd_cb_resolution, CB_SELECTSTRING, -1, (LPARAM)str_resolution);
-    SendMessage(hwnd_cb_fps, CB_SELECTSTRING, -1, (LPARAM)str_fps);
-    SendMessage(hwnd_cb_sound, CB_SELECTSTRING, -1, (LPARAM)str_sound);
+    const char* cp_path = get_path.c_str();
+
+    SendMessage(hwnd_tb_path, WM_SETTEXT, 0, (LPCWSTR)cp_path);
+    SendMessage(hwnd_cb_resolution, CB_SETCURSEL, get_resolution, 0);
+    SendMessage(hwnd_cb_fps, CB_SETCURSEL, get_fps, 0);
+    SendMessage(hwnd_cb_sound, CB_SETCURSEL, get_sound, 0);
 
 
     /* 保存ボタンとキャンセルボタン */
@@ -267,16 +269,16 @@ void SaveSettings() {
     std::ofstream file("settings.json");
 
     /* 文字を変数に入れていく*/
-    std::string str_path = GetTextFromEdit(hwnd_tb_path);
-    std::string str_resolution = GetTextFromEdit(hwnd_cb_resolution);
-    std::string str_fps = GetTextFromEdit(hwnd_cb_fps);
-    std::string str_sound = GetTextFromEdit(hwnd_cb_sound);
+    std::string set_path = GetTextFromEdit(hwnd_tb_path);
+    int set_resolution = SendMessage(hwnd_cb_resolution, CB_GETCURSEL, 0, 0);
+    int set_fps = SendMessage(hwnd_cb_fps, CB_GETCURSEL, 0, 0);
+    int set_sound= SendMessage(hwnd_cb_sound, CB_GETCURSEL, 0, 0);
 
     /* jsonに記入していく */
-    json["path"]       = str_path;
-    json["resolution"] = str_resolution;
-    json["fps"]        = str_fps;
-    json["sound"]      = str_sound;
+    json["path"]       = set_path;
+    json["resolution"] = set_resolution;
+    json["fps"]        = set_fps;
+    json["sound"]      = set_sound;
 
     file << json.dump(4);
     file.close();
