@@ -213,9 +213,9 @@ void CreateSettingsWindow() {
     int get_fps = json["fps"];
     int get_sound = json["sound"];
 
-    const char* cp_path = get_path.c_str();
+    std::wstring wstr_path(get_path.begin(), get_path.end());
 
-    SendMessage(hwnd_tb_path, WM_SETTEXT, 0, (LPCWSTR)cp_path);
+    SendMessage(hwnd_tb_path, WM_SETTEXT, 0, (LPARAM)wstr_path.c_str());
     SendMessage(hwnd_cb_resolution, CB_SETCURSEL, get_resolution, 0);
     SendMessage(hwnd_cb_fps, CB_SETCURSEL, get_fps, 0);
     SendMessage(hwnd_cb_sound, CB_SETCURSEL, get_sound, 0);
