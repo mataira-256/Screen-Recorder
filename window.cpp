@@ -36,6 +36,8 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, 
 void CreateMainWindow() {
     WNDCLASS wc_main;
     HWND hwnd_btn_settings;
+    HWND hwnd_lb_window;
+    HWND hwnd_lb_sound;
 
     /* wc_main(ウィンドウクラス)の属性を設定 */
     wc_main.style = CS_HREDRAW | CS_VREDRAW;
@@ -71,12 +73,40 @@ void CreateMainWindow() {
         TEXT("button"),
         TEXT("settings"),
         WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
-        100,
-        100,
+        400,
+        400,
         100,
         50,
         hwnd_main,
         (HMENU)ID_BTN_SETTINGS,
+        hInstance,
+        NULL);
+
+    /* windowリストボックスの作成*/
+    hwnd_lb_window = CreateWindow(
+        TEXT("ListBox"),
+        TEXT(""),
+        WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
+        100,
+        100,
+        200,
+        200,
+        hwnd_main,
+        (HMENU)ID_LB_WINDOW,
+        hInstance,
+        NULL);
+
+    /* windowリストボックスの作成*/
+    hwnd_lb_sound = CreateWindow(
+        TEXT("ListBox"),
+        TEXT(""),
+        WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
+        300,
+        100,
+        200,
+        200,
+        hwnd_main,
+        (HMENU)ID_LB_SOUND,
         hInstance,
         NULL);
 
