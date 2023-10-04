@@ -69,7 +69,7 @@ void CreateMainWindow() {
     /* 録画ボタンを作る */
     hwnd_btn_settings = CreateWindow(
         TEXT("button"),
-        TEXT("設定"),
+        TEXT("settings"),
         WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
         100,
         100,
@@ -115,7 +115,7 @@ void CreateSettingsWindow() {
     /* hwnd_settings(ウィンドウハンドル(識別子))の作成 */
     hwnd_settings = CreateWindow(
         class_settings,
-        TEXT("設定"),
+        TEXT("settings"),
         WS_POPUPWINDOW | WS_CAPTION,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
@@ -224,7 +224,7 @@ void CreateSettingsWindow() {
     /* 保存ボタンとキャンセルボタン */
     hwnd_btn_save_settings = CreateWindow(
         TEXT("button"),
-        TEXT("保存"),
+        TEXT("save"),
         WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
         400,
         400,
@@ -237,7 +237,7 @@ void CreateSettingsWindow() {
 
     hwnd_btn_cancel_settings = CreateWindow(
         TEXT("button"),
-        TEXT("キャンセル"),
+        TEXT("cancel"),
         WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
         450,
         400,
