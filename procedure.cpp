@@ -1,5 +1,4 @@
-#include <windows.h>
-#include "window_inc.hpp"
+#include "window.hpp"
 #include "window_id.hpp"
 
 extern HWND hwnd_main;

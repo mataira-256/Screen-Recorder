@@ -20,12 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="procedure.cpp" />
-    <ClCompile Include="Recorder.cpp" />
+    <ClCompile Include="recorder.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.hpp" />
-    <ClInclude Include="window_inc.hpp" />
+    <ClInclude Include="recorder.hpp" />
+    <ClInclude Include="window.hpp" />
     <ClInclude Include="window_id.hpp" />
   </ItemGroup>
   <ItemGroup>

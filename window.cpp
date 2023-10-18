@@ -1,9 +1,5 @@
-#include <windows.h>
-#include <iostream>
-#include <fstream>
-
 #include "json.hpp"
-#include "window_inc.hpp"
+#include "window.hpp"
 #include "window_id.hpp"
 
 /* グローバル変数等々 */
