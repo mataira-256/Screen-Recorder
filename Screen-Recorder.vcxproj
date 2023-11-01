@@ -91,6 +91,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\ffmpeg\include;$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(SolutionDir)\ffmpeg\lib</AdditionalUsingDirectories>
+      <AdditionalOptions>-D__STDC_CONSTANT_MACROS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -120,6 +121,7 @@ copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\ffmpeg\include;$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(SolutionDir)\ffmpeg\lib</AdditionalUsingDirectories>
+      <AdditionalOptions>-D__STDC_CONSTANT_MACROS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -149,6 +151,7 @@ copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\ffmpeg\include;$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(SolutionDir)\ffmpeg\lib</AdditionalUsingDirectories>
+      <AdditionalOptions>-D__STDC_CONSTANT_MACROS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -178,6 +181,7 @@ copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\ffmpeg\include;$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(SolutionDir)\ffmpeg\lib</AdditionalUsingDirectories>
+      <AdditionalOptions>-D__STDC_CONSTANT_MACROS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
