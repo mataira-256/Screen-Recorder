@@ -15,9 +15,6 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         case ID_BTN_SETTINGS:
             CreateSettingsWindow();
             break;
-        case ID_BTN_RECORDING:
-            Recorder();
-            break;
         }
     }
 

@@ -1,9 +1,8 @@
 #pragma once
 
 #define ID_BTN_SETTINGS 01
-#define ID_BTN_RECORDING 02
-#define ID_LB_WINDOW 03
-#define ID_LB_SOUND 04
+#define ID_LB_WINDOW 02
+#define ID_LB_SOUND 03
 #define ID_TB_PATH 11
 #define ID_CB_RESOLUTION 12
 #define ID_CB_FPS 13
