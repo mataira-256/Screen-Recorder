@@ -1,8 +1,8 @@
-#include "json.hpp"
+ï»¿#include "json.hpp"
 #include "window.hpp"
 #include "window_id.hpp"
 
-/* ƒOƒ[ƒoƒ‹•Ï”“™X */
+/* ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ç­‰ã€… */
 HINSTANCE hInstance;
 TCHAR class_main[] = TEXT("MainWindow");
 TCHAR class_settings[] = TEXT("SettingsWindow");
@@ -10,14 +10,14 @@ HWND hwnd_main;
 HWND hwnd_settings;
 
 
-/* WinMain(WINAPI‚Ìmain‚İ‚½‚¢‚È‚à‚Ì)‚ÌéŒ¾ */
+/* WinMain(WINAPIã®mainã¿ãŸã„ãªã‚‚ã®)ã®å®£è¨€ */
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow) {
     hInstance = hInst;
     MSG msg;
 
     CreateMainWindow();
 
-    /* ƒƒbƒZ[ƒWƒ‹[ƒv(ƒCƒxƒ“ƒg‚Æ‚©ƒƒbƒZ[ƒW‚ğó‚¯æ‚Á‚ÄAˆ—‚µ‚Ä‚­‚ê‚é‚Æ‚±‚É‘—‚é‚Ì‚ÆAƒEƒBƒ“ƒhƒE‚ÌˆÛ) */
+    /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—(ã‚¤ãƒ™ãƒ³ãƒˆã¨ã‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ã‘å–ã£ã¦ã€å‡¦ç†ã—ã¦ãã‚Œã‚‹ã¨ã“ã«é€ã‚‹ã®ã¨ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¶­æŒ) */
     while (GetMessage(&msg, NULL, 0, 0) > 0) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
@@ -28,14 +28,14 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, 
 
 
 
-/* ƒƒCƒ“ƒEƒBƒ“ƒhƒEŒn */
+/* ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç³» */
 void CreateMainWindow() {
     WNDCLASS wc_main;
     HWND hwnd_btn_settings;
     HWND hwnd_lb_window;
     HWND hwnd_lb_sound;
 
-    /* wc_main(ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX)‚Ì‘®«‚ğİ’è */
+    /* wc_main(ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹)ã®å±æ€§ã‚’è¨­å®š */
     wc_main.style = CS_HREDRAW | CS_VREDRAW;
     wc_main.lpfnWndProc = MainWndProc;
     wc_main.cbClsExtra = 0;
@@ -47,10 +47,10 @@ void CreateMainWindow() {
     wc_main.lpszMenuName = NULL;
     wc_main.lpszClassName = class_main;
 
-    /* wc_main‚ğ“o˜^(windows‚É”F¯‚³‚¹‚é) */
+    /* wc_mainã‚’ç™»éŒ²(windowsã«èªè­˜ã•ã›ã‚‹) */
     RegisterClass(&wc_main);
 
-    /* hwnd_main(ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹(¯•Êq))‚Ìì¬ */
+    /* hwnd_main(ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«(è­˜åˆ¥å­))ã®ä½œæˆ */
     hwnd_main = CreateWindow(
         class_main,
         TEXT("Screen-Recorder"),
@@ -64,7 +64,7 @@ void CreateMainWindow() {
         hInstance,
         NULL);
 
-    /* ˜^‰æƒ{ƒ^ƒ“‚ğì‚é */
+    /* éŒ²ç”»ãƒœã‚¿ãƒ³ã‚’ä½œã‚‹ */
     hwnd_btn_settings = CreateWindow(
         TEXT("button"),
         TEXT("settings"),
@@ -78,7 +78,7 @@ void CreateMainWindow() {
         hInstance,
         NULL);
 
-    /* windowƒŠƒXƒgƒ{ƒbƒNƒX‚Ìì¬*/
+    /* windowãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®ä½œæˆ*/
     hwnd_lb_window = CreateWindow(
         TEXT("ListBox"),
         TEXT(""),
@@ -92,7 +92,7 @@ void CreateMainWindow() {
         hInstance,
         NULL);
 
-    /* windowƒŠƒXƒgƒ{ƒbƒNƒX‚Ìì¬*/
+    /* windowãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®ä½œæˆ*/
     hwnd_lb_sound = CreateWindow(
         TEXT("ListBox"),
         TEXT(""),
@@ -112,7 +112,7 @@ void CreateMainWindow() {
 
 
 
-/* İ’è—pƒEƒBƒ“ƒhƒEŒn */
+/* è¨­å®šç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç³» */
 void CreateSettingsWindow() {
     WNDCLASS wc_settings;
     HWND hwnd_tb_path;
@@ -123,7 +123,7 @@ void CreateSettingsWindow() {
     HWND hwnd_btn_cancel_settings;
 
 
-    /* wc_settings(ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX)‚Ì‘®«‚ğİ’è */
+    /* wc_settings(ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹)ã®å±æ€§ã‚’è¨­å®š */
     wc_settings.style = CS_HREDRAW | CS_VREDRAW;
     wc_settings.lpfnWndProc = SettingsWndProc;
     wc_settings.cbClsExtra = 0;
@@ -135,10 +135,10 @@ void CreateSettingsWindow() {
     wc_settings.lpszMenuName = NULL;
     wc_settings.lpszClassName = class_settings;
 
-    /* wc_settings‚ğ“o˜^(windows‚É”F¯‚³‚¹‚é) */
+    /* wc_settingsã‚’ç™»éŒ²(windowsã«èªè­˜ã•ã›ã‚‹) */
     RegisterClass(&wc_settings);
 
-    /* hwnd_settings(ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹(¯•Êq))‚Ìì¬ */
+    /* hwnd_settings(ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«(è­˜åˆ¥å­))ã®ä½œæˆ */
     hwnd_settings = CreateWindow(
         class_settings,
         TEXT("settings"),
@@ -153,7 +153,7 @@ void CreateSettingsWindow() {
         NULL);
 
 
-    /* •Û‘¶æpath‚ÌƒeƒLƒXƒgƒ{ƒbƒNƒX‚Ìì¬ */
+    /* ä¿å­˜å…ˆpathã®ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®ä½œæˆ */
     hwnd_tb_path = CreateWindow(
         TEXT("EDIT"),
         TEXT(""),
@@ -168,7 +168,7 @@ void CreateSettingsWindow() {
         NULL);
 
 
-    /* ‰ğ‘œ“x‚ÌƒRƒ“ƒ{ƒ{ƒbƒNƒX‚Ìì¬ */
+    /* è§£åƒåº¦ã®ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã®ä½œæˆ */
     hwnd_cb_resolution = CreateWindow(
         TEXT("COMBOBOX"),
         TEXT(""),
@@ -182,14 +182,14 @@ void CreateSettingsWindow() {
         hInstance,
         NULL);
 
-    /* ‰ğ‘œ“x‚ÌƒRƒ“ƒ{ƒ{ƒbƒNƒX‚ÌƒŠƒXƒg‚ğ’Ç‰Á */
+    /* è§£åƒåº¦ã®ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã®ãƒªã‚¹ãƒˆã‚’è¿½åŠ  */
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1920x1080"));
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("1280x720"));
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("640x360"));
     SendMessage(hwnd_cb_resolution, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("256x144"));
 
 
-    /* ƒtƒŒ[ƒ€ƒŒ[ƒg‚ÌƒRƒ“ƒ{ƒ{ƒbƒNƒX‚Ìì¬ */
+    /* ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆã®ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã®ä½œæˆ */
     hwnd_cb_fps = CreateWindow(
         TEXT("COMBOBOX"),
         TEXT(""),
@@ -203,13 +203,13 @@ void CreateSettingsWindow() {
         hInstance,
         NULL);
 
-    /* ƒtƒŒ[ƒ€ƒŒ[ƒg‚ÌƒRƒ“ƒ{ƒ{ƒbƒNƒX‚ÌƒŠƒXƒg‚ğ’Ç‰Á */
+    /* ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆã®ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã®ãƒªã‚¹ãƒˆã‚’è¿½åŠ  */
     SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("60fps"));
     SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("30fps"));
     SendMessage(hwnd_cb_fps, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("15fps"));
 
 
-    /* ‰¹¿‚ÌƒRƒ“ƒ{ƒ{ƒbƒNƒX‚Ìì¬ */
+    /* éŸ³è³ªã®ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã®ä½œæˆ */
     hwnd_cb_sound = CreateWindow(
         TEXT("COMBOBOX"),
         TEXT(""),
@@ -223,13 +223,13 @@ void CreateSettingsWindow() {
         hInstance,
         NULL);
 
-    /* ‰¹¿‚ÌƒRƒ“ƒ{ƒ{ƒbƒNƒX‚ÌƒŠƒXƒg‚ğ’Ç‰Á */
+    /* éŸ³è³ªã®ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã®ãƒªã‚¹ãƒˆã‚’è¿½åŠ  */
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("48000Hz"));
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("32000Hz"));
     SendMessage(hwnd_cb_sound, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)TEXT("16000Hz"));
 
 
-    /* ƒeƒLƒXƒgƒ{ƒbƒNƒX‚ÆƒRƒ“ƒ{ƒ{ƒbƒNƒX‚É ‰Šú’l‚ğ—^‚¦‚é */
+    /* ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã¨ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã« åˆæœŸå€¤ã‚’ä¸ãˆã‚‹ */
     nlohmann::json json;
     std::ifstream file("settings.json");
     file >> json;
@@ -247,7 +247,7 @@ void CreateSettingsWindow() {
     SendMessage(hwnd_cb_sound, CB_SETCURSEL, get_sound, 0);
 
 
-    /* •Û‘¶ƒ{ƒ^ƒ“‚ÆƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“ */
+    /* ä¿å­˜ãƒœã‚¿ãƒ³ã¨ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³ */
     hwnd_btn_save_settings = CreateWindow(
         TEXT("button"),
         TEXT("save"),
@@ -277,30 +277,30 @@ void CreateSettingsWindow() {
     ShowWindow(hwnd_settings, SW_SHOW);
     UpdateWindow(hwnd_settings);
 
-    EnableWindow(hwnd_main, FALSE); // ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğg—p•s‰Â‚É
+    EnableWindow(hwnd_main, FALSE); // ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ä¸å¯ã«
 }
 
 
 
-/* İ’è‚ğjson‚É•Û‘¶‚·‚é */
+/* è¨­å®šã‚’jsonã«ä¿å­˜ã™ã‚‹ */
 void SaveSettings() {
-    /* ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğæ“¾ */
+    /* ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾— */
     HWND hwnd_tb_path       = GetDlgItem(hwnd_settings, ID_TB_PATH);
     HWND hwnd_cb_resolution = GetDlgItem(hwnd_settings, ID_CB_RESOLUTION);
     HWND hwnd_cb_fps        = GetDlgItem(hwnd_settings, ID_CB_FPS);
     HWND hwnd_cb_sound      = GetDlgItem(hwnd_settings, ID_CB_SOUND);
 
-    /* json‚ğŠJ‚­ */
+    /* jsonã‚’é–‹ã */
     nlohmann::json json;
     std::ofstream file("settings.json");
 
-    /* •¶š‚ğ•Ï”‚É“ü‚ê‚Ä‚¢‚­*/
+    /* æ–‡å­—ã‚’å¤‰æ•°ã«å…¥ã‚Œã¦ã„ã*/
     std::string set_path = GetTextFromEdit(hwnd_tb_path);
     int set_resolution = SendMessage(hwnd_cb_resolution, CB_GETCURSEL, 0, 0);
     int set_fps = SendMessage(hwnd_cb_fps, CB_GETCURSEL, 0, 0);
     int set_sound= SendMessage(hwnd_cb_sound, CB_GETCURSEL, 0, 0);
 
-    /* json‚É‹L“ü‚µ‚Ä‚¢‚­ */
+    /* jsonã«è¨˜å…¥ã—ã¦ã„ã */
     json["path"]       = set_path;
     json["resolution"] = set_resolution;
     json["fps"]        = set_fps;
@@ -312,26 +312,26 @@ void SaveSettings() {
 
 
 
-// ƒGƒfƒBƒbƒgƒ{ƒbƒNƒX‚©‚çƒeƒLƒXƒg‚ğæ“¾‚µ‚Ästd::string‚É•ÏŠ·‚·‚éŠÖ”
+// ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—ã—ã¦std::stringã«å¤‰æ›ã™ã‚‹é–¢æ•°
 std::string GetTextFromEdit(HWND editBox) {
     int textLength = GetWindowTextLength(editBox);
     if (textLength == 0) {
-        return ""; // ƒGƒfƒBƒbƒgƒ{ƒbƒNƒX‚ª‹ó‚Ìê‡A‹ó‚Ì•¶š—ñ‚ğ•Ô‚·
+        return ""; // ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒœãƒƒã‚¯ã‚¹ãŒç©ºã®å ´åˆã€ç©ºã®æ–‡å­—åˆ—ã‚’è¿”ã™
     }
 
-    // ƒeƒLƒXƒg‚ğŠi”[‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@‚ğŠ„‚è“–‚Ä‚é
+    // ãƒ†ã‚­ã‚¹ãƒˆã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡ã‚’å‰²ã‚Šå½“ã¦ã‚‹
     wchar_t* buffer = new wchar_t[textLength + 1];
 
-    // ƒGƒfƒBƒbƒgƒ{ƒbƒNƒX‚©‚çƒeƒLƒXƒg‚ğæ“¾
+    // ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
     GetWindowText(editBox, buffer, textLength + 1);
 
-    // wchar_t‚ğstd::wstring‚É•ÏŠ·
+    // wchar_tã‚’std::wstringã«å¤‰æ›
     std::wstring wstr(buffer);
 
-    // std::wstring‚ğstd::string‚É•ÏŠ·
+    // std::wstringã‚’std::stringã«å¤‰æ›
     std::string str(wstr.begin(), wstr.end());
 
-    // ƒƒ‚ƒŠƒŠ[ƒN‚ğ–h‚®‚½‚ß‚Éƒoƒbƒtƒ@‚ğ‰ğ•ú
+    // ãƒ¡ãƒ¢ãƒªãƒªãƒ¼ã‚¯ã‚’é˜²ããŸã‚ã«ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾
     delete[] buffer;
 
     return str;

@@ -1,16 +1,16 @@
-#include "window.hpp"
+﻿#include "window.hpp"
 #include "window_id.hpp"
 
 extern HWND hwnd_main;
 extern HWND hwnd_settings;
 
-/* MainWndProc(�E�B���h�E�v���V�[�W��(�󂯎�������b�Z�[�W�ɂ���ď���������))�̒�` */
+/* MainWndProc(ウィンドウプロシージャ(受け取ったメッセージによって処理をする))の定義 */
 LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    switch (uMsg) { // uMsg(�󂯎�������b�Z�[�W�������Ă�)��
-    case WM_DESTROY: // WM_DESTROY(�E�B���h�E���j�����ꂽ�Ƃ��ɔ������郁�b�Z�[�W)�Ȃ�
-        PostQuitMessage(0); // �I���R�[�h��0�ɂ���
+    switch (uMsg) { // uMsg(受け取ったメッセージが入ってる)が
+    case WM_DESTROY: // WM_DESTROY(ウィンドウが破棄されたときに発生するメッセージ)なら
+        PostQuitMessage(0); // 終了コードを0にする
         return 0;
-    case WM_COMMAND: // WM_COMMAND(���炩�̃{�^���������ꂽ�Ƃ��ɔ������郁�b�Z�[�W)�Ȃ�
+    case WM_COMMAND: // WM_COMMAND(何らかのボタンが押されたときに発生するメッセージ)なら
         switch (LOWORD(wParam)) {
         case ID_BTN_SETTINGS:
             CreateSettingsWindow();
@@ -18,15 +18,15 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         }
     }
 
-    return DefWindowProc(hwnd, uMsg, wParam, lParam); // ���ʎw�肵����ȊO�͊���̃v���V�[�W���ɂԂ񓊂���
+    return DefWindowProc(hwnd, uMsg, wParam, lParam); // 特別指定したやつ以外は既定のプロシージャにぶん投げる
 }
 
 
 
-/* SettingsWndProc(�E�B���h�E�v���V�[�W��(�󂯎�������b�Z�[�W�ɂ���ď���������))�̒�` */
+/* SettingsWndProc(ウィンドウプロシージャ(受け取ったメッセージによって処理をする))の定義 */
 LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    switch (uMsg) { // uMsg(�󂯎�������b�Z�[�W�������Ă�)��
-    case WM_DESTROY: // WM_DESTROY(�E�B���h�E���j�����ꂽ�Ƃ��ɔ������郁�b�Z�[�W)�Ȃ�
+    switch (uMsg) { // uMsg(受け取ったメッセージが入ってる)が
+    case WM_DESTROY: // WM_DESTROY(ウィンドウが破棄されたときに発生するメッセージ)なら
         return 0;
     case WM_CLOSE:
         EnableWindow(hwnd_main, TRUE);
@@ -43,5 +43,5 @@ LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
         }
     }
 
-    return DefWindowProc(hwnd, uMsg, wParam, lParam); // ���ʎw�肵����ȊO�͊���̃v���V�[�W���ɂԂ񓊂���
+    return DefWindowProc(hwnd, uMsg, wParam, lParam); // 特別指定したやつ以外は既定のプロシージャにぶん投げる
 }

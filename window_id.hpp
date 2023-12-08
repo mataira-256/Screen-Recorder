@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #define ID_BTN_SETTINGS 01
 #define ID_LB_WINDOW 02
