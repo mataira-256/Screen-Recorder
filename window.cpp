@@ -32,6 +32,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, 
 void CreateMainWindow() {
     WNDCLASS wc_main;
     HWND hwnd_btn_settings;
+    HWND hwnd_btn_recording;
     HWND hwnd_lb_window;
     HWND hwnd_lb_sound;
 
@@ -64,7 +65,7 @@ void CreateMainWindow() {
         hInstance,
         NULL);
 
-    /* 録画ボタンを作る */
+    /* 設定ボタンを作る */
     hwnd_btn_settings = CreateWindow(
         TEXT("button"),
         TEXT("settings"),
@@ -75,6 +76,20 @@ void CreateMainWindow() {
         50,
         hwnd_main,
         (HMENU)ID_BTN_SETTINGS,
+        hInstance,
+        NULL);
+
+    /* 録画ボタンを作る */
+    hwnd_btn_recording = CreateWindow(
+        TEXT("button"),
+        TEXT("rec"),
+        WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+        400,
+        350,
+        100,
+        50,
+        hwnd_main,
+        (HMENU)ID_BTN_RECORDING,
         hInstance,
         NULL);
 
