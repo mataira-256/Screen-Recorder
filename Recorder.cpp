@@ -1,5 +1,9 @@
 ﻿#include "recorder.hpp"
 
-void Recorder() {
+void Recording() {
+
+}
+
+void RecStop() {
 
 }

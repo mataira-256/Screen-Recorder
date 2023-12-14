@@ -8,7 +8,8 @@ TCHAR class_main[] = TEXT("MainWindow");
 TCHAR class_settings[] = TEXT("SettingsWindow");
 HWND hwnd_main;
 HWND hwnd_settings;
-
+HWND hwnd_btn_recording;
+HWND hwnd_btn_recstop;
 
 /* WinMain(WINAPIのmainみたいなもの)の宣言 */
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow) {
@@ -32,7 +33,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, 
 void CreateMainWindow() {
     WNDCLASS wc_main;
     HWND hwnd_btn_settings;
-    HWND hwnd_btn_recording;
+
     HWND hwnd_lb_window;
     HWND hwnd_lb_sound;
 
@@ -90,6 +91,20 @@ void CreateMainWindow() {
         50,
         hwnd_main,
         (HMENU)ID_BTN_RECORDING,
+        hInstance,
+        NULL);
+
+    /* 停止ボタンを作る */
+    hwnd_btn_recstop = CreateWindow(
+        TEXT("button"),
+        TEXT("stop"),
+        WS_CHILD | BS_PUSHBUTTON,
+        400,
+        350,
+        100,
+        50,
+        hwnd_main,
+        (HMENU)ID_BTN_RECSTOP,
         hInstance,
         NULL);
 

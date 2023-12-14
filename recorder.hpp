@@ -2,4 +2,5 @@
 #include <Windows.h>
 #include "window.hpp"
 
-void Recorder();
+void Recording();
+void RecStop();

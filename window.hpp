@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <windows.h>
 #include <fstream>
+#include "recorder.hpp"
 
 LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -8,7 +9,5 @@ LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 void CreateMainWindow();
 void CreateSettingsWindow();
 void SaveSettings();
-
-void Recorder();
 
 std::string GetTextFromEdit(HWND editBox);

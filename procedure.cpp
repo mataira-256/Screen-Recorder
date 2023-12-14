@@ -3,6 +3,8 @@
 
 extern HWND hwnd_main;
 extern HWND hwnd_settings;
+extern HWND hwnd_btn_recording;
+extern HWND hwnd_btn_recstop;
 
 /* MainWndProc(ウィンドウプロシージャ(受け取ったメッセージによって処理をする))の定義 */
 LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
@@ -16,7 +18,14 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             CreateSettingsWindow();
             break;
         case ID_BTN_RECORDING:
-            Recorder();
+            ShowWindow(hwnd_btn_recording, SW_HIDE);
+            ShowWindow(hwnd_btn_recstop, SW_NORMAL);
+            Recording();
+            break;
+        case ID_BTN_RECSTOP:
+            ShowWindow(hwnd_btn_recording, SW_NORMAL);
+            ShowWindow(hwnd_btn_recstop, SW_HIDE);
+            RecStop();
             break;
         }
     }
