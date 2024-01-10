@@ -29,6 +29,7 @@
     <ClInclude Include="window_id.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="settings.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -95,7 +96,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\ffmpeg\lib;$(SolutionDir)\ScreenRecorderLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\ffmpeg\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
@@ -106,8 +107,7 @@ copy "$(SolutionDir)ffmpeg\lib\avformat-60.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\avutil-58.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\postproc-57.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\swresample-4.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"
-copy "$(SolutionDir)ScreenRecorderLib\ScreenRecorderLib.dll" "$(TargetDir)"</Command>
+copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -126,7 +126,7 @@ copy "$(SolutionDir)ScreenRecorderLib\ScreenRecorderLib.dll" "$(TargetDir)"</Com
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\ffmpeg\lib;$(SolutionDir)\ScreenRecorderLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\ffmpeg\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
@@ -137,8 +137,7 @@ copy "$(SolutionDir)ffmpeg\lib\avformat-60.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\avutil-58.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\postproc-57.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\swresample-4.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"
-copy "$(SolutionDir)ScreenRecorderLib\ScreenRecorderLib.dll" "$(TargetDir)"</Command>
+copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -153,7 +152,7 @@ copy "$(SolutionDir)ScreenRecorderLib\ScreenRecorderLib.dll" "$(TargetDir)"</Com
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\ffmpeg\lib;$(SolutionDir)\ScreenRecorderLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\ffmpeg\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
@@ -164,8 +163,7 @@ copy "$(SolutionDir)ffmpeg\lib\avformat-60.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\avutil-58.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\postproc-57.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\swresample-4.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"
-copy "$(SolutionDir)ScreenRecorderLib\ScreenRecorderLib.dll" "$(TargetDir)"</Command>
+copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -184,7 +182,7 @@ copy "$(SolutionDir)ScreenRecorderLib\ScreenRecorderLib.dll" "$(TargetDir)"</Com
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\ffmpeg\lib;$(SolutionDir)\ScreenRecorderLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\ffmpeg\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
@@ -195,11 +193,17 @@ copy "$(SolutionDir)ffmpeg\lib\avformat-60.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\avutil-58.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\postproc-57.dll" "$(TargetDir)"
 copy "$(SolutionDir)ffmpeg\lib\swresample-4.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"
-copy "$(SolutionDir)ScreenRecorderLib\ScreenRecorderLib.dll" "$(TargetDir)"</Command>
+copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\ScreenRecorderLib.5.4.0\build\ScreenRecorderLib.targets" Condition="Exists('packages\ScreenRecorderLib.5.4.0\build\ScreenRecorderLib.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\ScreenRecorderLib.5.4.0\build\ScreenRecorderLib.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ScreenRecorderLib.5.4.0\build\ScreenRecorderLib.targets'))" />
+  </Target>
 </Project>
