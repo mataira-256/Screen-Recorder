@@ -55,7 +55,7 @@ void CreateMainWindow() {
     /* hwnd_main(ウィンドウハンドル(識別子))の作成 */
     hwnd_main = CreateWindow(
         class_main,
-        TEXT("Screen-Recorder"),
+        TEXT("〇Screen-Recorder"),
         WS_OVERLAPPED | WS_SYSMENU,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
@@ -105,34 +105,6 @@ void CreateMainWindow() {
         50,
         hwnd_main,
         (HMENU)ID_BTN_RECSTOP,
-        hInstance,
-        NULL);
-
-    /* windowリストボックスの作成*/
-    hwnd_lb_window = CreateWindow(
-        TEXT("ListBox"),
-        TEXT(""),
-        WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
-        100,
-        100,
-        200,
-        200,
-        hwnd_main,
-        (HMENU)ID_LB_WINDOW,
-        hInstance,
-        NULL);
-
-    /* windowリストボックスの作成*/
-    hwnd_lb_sound = CreateWindow(
-        TEXT("ListBox"),
-        TEXT(""),
-        WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT,
-        300,
-        100,
-        200,
-        200,
-        hwnd_main,
-        (HMENU)ID_LB_SOUND,
         hInstance,
         NULL);
 
