@@ -20,13 +20,13 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         case ID_BTN_RECORDING:
             ShowWindow(hwnd_btn_recording, SW_HIDE);
             ShowWindow(hwnd_btn_recstop, SW_NORMAL);
-            SetWindowText(hwnd_main, TEXT("[Rec]Screen-Recorder"));
+            SetWindowText(hwnd_main, TEXT("●Screen-Recorder"));
             Recording();
             break;
         case ID_BTN_RECSTOP:
             ShowWindow(hwnd_btn_recording, SW_NORMAL);
             ShowWindow(hwnd_btn_recstop, SW_HIDE);
-            SetWindowText(hwnd_main, TEXT("Screen-Recorder"));
+            SetWindowText(hwnd_main, TEXT("〇Screen-Recorder"));
             RecStop();
             break;
         }
