@@ -24,10 +24,18 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             Recording();
             break;
         case ID_BTN_RECSTOP:    // 停止ボタンなら
-            ShowWindow(hwnd_btn_recording, SW_NORMAL);
-            ShowWindow(hwnd_btn_recstop, SW_HIDE);
-            SetWindowText(hwnd_main, TEXT("〇Screen-Recorder"));
-            RecStop();
+            int id; // メッセージボックスで警告してから消す
+            id = MessageBox(
+                hwnd_main,
+                TEXT("非常停止しますか？した場合、今回の録画は正常終了しません\n(正常終了する場合はFFmpegのウィンドウでCtrl+Cをしてください)"),
+                TEXT(""),
+                MB_OKCANCEL | MB_ICONEXCLAMATION);
+            if (id == IDOK) {   // 緊急停止を選んだ場合
+                ShowWindow(hwnd_btn_recording, SW_NORMAL);
+                ShowWindow(hwnd_btn_recstop, SW_HIDE);
+                SetWindowText(hwnd_main, TEXT("〇Screen-Recorder"));
+                RecStop();
+            }
             break;
         }
     }
