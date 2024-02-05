@@ -91,8 +91,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\ffmpeg\include;$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalUsingDirectories>$(SolutionDir)\ffmpeg\lib;$(SolutionDir)\ScreenRecorderLib</AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>
+      </AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -101,14 +102,8 @@
       <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
-      <Command>copy "$(SolutionDir)ffmpeg\lib\avcodec-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avdevice-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avfilter-9.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avformat-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avutil-58.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\postproc-57.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swresample-4.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,8 +114,9 @@ copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\ffmpeg\include;$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalUsingDirectories>$(SolutionDir)\ffmpeg\lib;$(SolutionDir)\ScreenRecorderLib</AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>
+      </AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -131,14 +127,8 @@ copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
       <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
-      <Command>copy "$(SolutionDir)ffmpeg\lib\avcodec-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avdevice-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avfilter-9.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avformat-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avutil-58.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\postproc-57.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swresample-4.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -147,8 +137,9 @@ copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\ffmpeg\include;$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalUsingDirectories>$(SolutionDir)\ffmpeg\lib;$(SolutionDir)\ScreenRecorderLib</AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>
+      </AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -157,14 +148,8 @@ copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
       <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
-      <Command>copy "$(SolutionDir)ffmpeg\lib\avcodec-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avdevice-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avfilter-9.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avformat-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avutil-58.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\postproc-57.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swresample-4.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -175,8 +160,9 @@ copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\ffmpeg\include;$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalUsingDirectories>$(SolutionDir)\ffmpeg\lib;$(SolutionDir)\ScreenRecorderLib</AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>
+      </AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -187,14 +173,8 @@ copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
       <AdditionalDependencies>avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreLinkEvent>
-      <Command>copy "$(SolutionDir)ffmpeg\lib\avcodec-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avdevice-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avfilter-9.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avformat-60.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\avutil-58.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\postproc-57.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swresample-4.dll" "$(TargetDir)"
-copy "$(SolutionDir)ffmpeg\lib\swscale-7.dll" "$(TargetDir)"</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
