@@ -16,7 +16,6 @@ HWND hwnd_btn_recstop;
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow) {
     hInstance = hInst;
     MSG msg;
-
     CreateMainWindow();
 
     /* メッセージループ(イベントとかメッセージを受け取って、処理してくれるとこに送るのと、ウィンドウの維持) */

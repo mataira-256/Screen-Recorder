@@ -14,16 +14,16 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         return 0;
     case WM_COMMAND: // WM_COMMAND(何らかのボタンが押されたときに発生するメッセージ)なら
         switch (LOWORD(wParam)) {
-        case ID_BTN_SETTINGS:
+        case ID_BTN_SETTINGS:   // 設定ウィンドウボタンが押されたとき
             CreateSettingsWindow();
             break;
-        case ID_BTN_RECORDING:
+        case ID_BTN_RECORDING:  // 録画ボタンなら
             ShowWindow(hwnd_btn_recording, SW_HIDE);
             ShowWindow(hwnd_btn_recstop, SW_NORMAL);
             SetWindowText(hwnd_main, TEXT("●Screen-Recorder"));
             Recording();
             break;
-        case ID_BTN_RECSTOP:
+        case ID_BTN_RECSTOP:    // 停止ボタンなら
             ShowWindow(hwnd_btn_recording, SW_NORMAL);
             ShowWindow(hwnd_btn_recstop, SW_HIDE);
             SetWindowText(hwnd_main, TEXT("〇Screen-Recorder"));
