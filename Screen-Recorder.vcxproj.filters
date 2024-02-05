@@ -43,6 +43,5 @@
     <None Include="settings.json">
       <Filter>リソース ファイル</Filter>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>
