@@ -34,8 +34,6 @@ void CreateMainWindow() {
     WNDCLASS wc_main;
     HWND hwnd_btn_settings;
 
-    HWND hwnd_lb_window;
-    HWND hwnd_lb_sound;
 
     /* wc_main(ウィンドウクラス)の属性を設定 */
     wc_main.style = CS_HREDRAW | CS_VREDRAW;
