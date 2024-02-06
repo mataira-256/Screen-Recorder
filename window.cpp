@@ -118,6 +118,7 @@ void CreateMainWindow() {
 void CreateSettingsWindow() {
     WNDCLASS wc_settings;
     HWND hwnd_tb_path;
+    HWND hwnd_tb_device;
     HWND hwnd_cb_resolution;
     HWND hwnd_cb_fps;
     HWND hwnd_cb_sound;
@@ -148,7 +149,7 @@ void CreateSettingsWindow() {
         CW_USEDEFAULT,
         CW_USEDEFAULT,
         BOX_WIDHT + MARGIN * 2 + MAGIC_WIDTH,
-        BOX_HEIGHT * 4 + BTN_HEIGHT + MARGIN * 6 + MAGIC_HEIGHT,
+        BOX_HEIGHT * 5 + BTN_HEIGHT + MARGIN * 7 + MAGIC_HEIGHT,
         hwnd_main,
         NULL,
         hInstance,
@@ -171,6 +172,22 @@ void CreateSettingsWindow() {
 
     SendMessage(hwnd_tb_path, EM_LIMITTEXT, 256, 0);
 
+    /* 録音デバイスのテキストボックスの作成 */
+    hwnd_tb_device = CreateWindow(
+        TEXT("EDIT"),
+        TEXT(""),
+        WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT | ES_AUTOHSCROLL,
+        MARGIN,
+        BOX_HEIGHT + MARGIN * 2,
+        BOX_WIDHT,
+        BOX_HEIGHT,
+        hwnd_settings,
+        (HMENU)ID_TB_DEVICE,
+        hInstance,
+        NULL);
+
+    SendMessage(hwnd_tb_device, EM_LIMITTEXT, 256, 0);
+
 
     /* 解像度のコンボボックスの作成 */
     hwnd_cb_resolution = CreateWindow(
@@ -178,7 +195,7 @@ void CreateSettingsWindow() {
         TEXT(""),
         WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
         MARGIN,
-        BOX_HEIGHT + MARGIN * 2 ,
+        BOX_HEIGHT * 2 + MARGIN * 3,
         BOX_WIDHT,
         CB_HEIGHT,
         hwnd_settings,
@@ -199,7 +216,7 @@ void CreateSettingsWindow() {
         TEXT(""),
         WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
         MARGIN,
-        BOX_HEIGHT * 2  + MARGIN * 3,
+        BOX_HEIGHT * 3 + MARGIN * 4,
         BOX_WIDHT,
         CB_HEIGHT,
         hwnd_settings,
@@ -219,7 +236,7 @@ void CreateSettingsWindow() {
         TEXT(""),
         WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
         MARGIN,
-        BOX_HEIGHT * 3 + MARGIN * 4,
+        BOX_HEIGHT * 4 + MARGIN * 5,
         BOX_WIDHT,
         CB_HEIGHT,
         hwnd_settings,
@@ -239,13 +256,16 @@ void CreateSettingsWindow() {
     file >> json;
 
     std::string get_path = json["path"];
+    std::string get_device = json["device"];
     int get_resolution = json["resolution"];
     int get_fps = json["fps"];
     int get_sound = json["sound"];
 
     std::wstring wstr_path(get_path.begin(), get_path.end());
+    std::wstring wstr_device(get_device.begin(), get_device.end());
 
     SendMessage(hwnd_tb_path, WM_SETTEXT, 0, (LPARAM)wstr_path.c_str());
+    SendMessage(hwnd_tb_device, WM_SETTEXT, 0, (LPARAM)wstr_device.c_str());
     SendMessage(hwnd_cb_resolution, CB_SETCURSEL, get_resolution, 0);
     SendMessage(hwnd_cb_fps, CB_SETCURSEL, get_fps, 0);
     SendMessage(hwnd_cb_sound, CB_SETCURSEL, get_sound, 0);
@@ -257,7 +277,7 @@ void CreateSettingsWindow() {
         TEXT("save"),
         WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
         MARGIN,
-        BOX_HEIGHT * 4 + MARGIN * 5,
+        BOX_HEIGHT * 5 + MARGIN * 6,
         BTN_WIDTH,
         BTN_HEIGHT,
         hwnd_settings,
@@ -270,7 +290,7 @@ void CreateSettingsWindow() {
         TEXT("cancel"),
         WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
         BTN_WIDTH + MARGIN,
-        BOX_HEIGHT * 4 + MARGIN * 5,
+        BOX_HEIGHT * 5 + MARGIN * 6,
         BTN_WIDTH,
         BTN_HEIGHT,
         hwnd_settings,
@@ -290,6 +310,7 @@ void CreateSettingsWindow() {
 void SaveSettings() {
     /* ウィンドウハンドルを取得 */
     HWND hwnd_tb_path       = GetDlgItem(hwnd_settings, ID_TB_PATH);
+    HWND hwnd_tb_device     = GetDlgItem(hwnd_settings, ID_TB_DEVICE);
     HWND hwnd_cb_resolution = GetDlgItem(hwnd_settings, ID_CB_RESOLUTION);
     HWND hwnd_cb_fps        = GetDlgItem(hwnd_settings, ID_CB_FPS);
     HWND hwnd_cb_sound      = GetDlgItem(hwnd_settings, ID_CB_SOUND);
@@ -300,12 +321,14 @@ void SaveSettings() {
 
     /* 文字を変数に入れていく*/
     std::string set_path = GetTextFromEdit(hwnd_tb_path);
+    std::string set_device = GetTextFromEdit(hwnd_tb_device);
     int set_resolution = SendMessage(hwnd_cb_resolution, CB_GETCURSEL, 0, 0);
     int set_fps = SendMessage(hwnd_cb_fps, CB_GETCURSEL, 0, 0);
     int set_sound= SendMessage(hwnd_cb_sound, CB_GETCURSEL, 0, 0);
 
     /* jsonに記入していく */
     json["path"]       = set_path;
+    json["device"]     = set_device;
     json["resolution"] = set_resolution;
     json["fps"]        = set_fps;
     json["sound"]      = set_sound;
