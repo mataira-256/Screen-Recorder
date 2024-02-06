@@ -1,5 +1,7 @@
 ﻿#include "window.hpp"
 #include "window_id.hpp"
+#include "layout.hpp"
+
 
 extern HWND hwnd_main;
 extern HWND hwnd_settings;
@@ -63,6 +65,21 @@ LRESULT CALLBACK SettingsWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
             EnableWindow(hwnd_main, TRUE);
             DestroyWindow(hwnd);
         }
+    case WM_PAINT:  // テキストの描画
+        // 描画コンテキストの取得
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hwnd, &ps);
+
+        // テキストの描画
+        TextOut(hdc, MARGIN, MARGIN, L"path", 4);
+        TextOut(hdc, MARGIN, BOX_HEIGHT + MARGIN * 2, L"device[beta]", 12);
+        TextOut(hdc, MARGIN, BOX_HEIGHT * 2 + MARGIN * 3, L"resolution", 10);
+        TextOut(hdc, MARGIN, BOX_HEIGHT * 3 + MARGIN * 4, L"fps", 3);
+        TextOut(hdc, MARGIN, BOX_HEIGHT * 4 + MARGIN * 5, L"sound", 5);
+
+        // 描画コンテキストの解放
+        EndPaint(hwnd, &ps);
+        break;
     }
 
     return DefWindowProc(hwnd, uMsg, wParam, lParam); // 特別指定したやつ以外は既定のプロシージャにぶん投げる
